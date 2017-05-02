@@ -251,7 +251,7 @@ public class Search {
 		}
 		return result;
 	}
-	
+	//sort part of merge sort that sort the frontier for A* search
 	public static Queue<Node> aStarSortFrontier(Queue<Node> frontier){
 		if(frontier.size() <=1){
 			return frontier;
@@ -272,7 +272,7 @@ public class Search {
 		right = aStarSortFrontier(right);
 		return mergeAStar(left,right,frontier);
 	}
-	
+        //Implement merge sort to sort the frontier based on A* weight score, excute on nlogn	
 	public static Queue<Node> mergeAStar(Queue<Node> left,Queue<Node> right,Queue<Node> frontier){
 		Queue<Node> result = new LinkedList<Node>();
 		ArrayList<Node> reference = toArrayList(frontier);
@@ -301,7 +301,7 @@ public class Search {
 		}
 		return result;
 	}
-	
+	//obtain Map that stores heristic information
 	public static HashMap<String,Integer> getG(Graph graph){
 		HashMap<String, Integer> gMap = new HashMap<String, Integer>();
 		for(Pair sunPath: graph.vertexs){
@@ -309,14 +309,14 @@ public class Search {
 		}
 		return gMap;
 	}
-	
+	//utility to reverse
 	public static ArrayList<Node> reverse(ArrayList<Node> nodes){
 		for(int m = 0, n = nodes.size() - 1; m < n; m++) {
 	        nodes.add(m, nodes.remove(n));
 	    }
 	    return nodes;
 	}
-	
+	//utility to get all children level nodes
 	public static Queue<Node> getChildren(Node root,Graph graph){
 		Queue<Node> childNodes = new LinkedList<Node>();
 		for(Pair edge: graph.edges){
@@ -326,7 +326,7 @@ public class Search {
 		}
 		return childNodes;
 	}
-	
+	//utility that change Queue to ArrayList
 	public static ArrayList<Node> toArrayList(Queue<Node> nodes){
 		ArrayList<Node> result = new ArrayList<Node>();
 		for(Node node :nodes){
@@ -340,7 +340,7 @@ public class Search {
 		Node root = new Node(null,graph.origin,0,0,0,graph);
 		return root;
 	}
-	
+	//check if goal is find
 	public static boolean goalCheck(Node current, Graph graph){
 		if(current.intersection.equals(graph.destination)){
 			return true;
@@ -349,7 +349,7 @@ public class Search {
 			return false;
 		}
 	}
-	
+	//write output file containing each step information
 	public static void outPutPathStep(Node goal)throws FileNotFoundException{
 		File outFile = new File("output.txt");
 		PrintWriter outPut = new PrintWriter(outFile);
@@ -368,7 +368,7 @@ public class Search {
 		outPut.close();
 		
 	}
-	
+	//write output that contain only graph path
 	public static void outPutPath(Node goal)throws FileNotFoundException{
 		File outFile = new File("output.txt");
 		PrintWriter outPut = new PrintWriter(outFile);
@@ -388,7 +388,7 @@ public class Search {
 		
 	}
 	
-	
+	//data structure that stores input graph
 	public static class Graph{
 		private String origin;
 		private String destination;
@@ -439,7 +439,7 @@ public class Search {
 		
 		
 	}
-	
+	//Basic unit data structure for search
 	public static class Node{
 		private String intersection;
 		private int pathCost;
